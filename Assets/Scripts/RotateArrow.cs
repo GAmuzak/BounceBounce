@@ -1,20 +1,24 @@
-using System;
 using UnityEngine;
 using UnityEngine.Events;
 
 public class RotateArrow : MonoBehaviour
 {
-    [SerializeField] Transform arrowSprite;
+    [SerializeField] GameObject arrowSprite;
     
     public UnityAction StartPullAction;
-    public UnityAction EndPullAction;
+    public UnityAction<Vector2> EndPullAction;
     
     Vector2 dirn;
     Vector2 initMousePos;
     Vector2 currentMousePos;
+    bool arrowRender;
+    public SpriteRenderer spriteRenderer;
+
     void Start()
     {
         Cursor.visible = false;
+        spriteRenderer=arrowSprite.GetComponent<SpriteRenderer>();
+        spriteRenderer.enabled = false;
     }
 
     void Update()
@@ -24,6 +28,7 @@ public class RotateArrow : MonoBehaviour
             Cursor.lockState = CursorLockMode.Locked;
             initMousePos = new Vector2(Screen.width/2.0f,Screen.height/2.0f);
             StartPullAction?.Invoke();
+            spriteRenderer.enabled = true;
         }
 
         else if (Input.GetMouseButton(0))
@@ -31,13 +36,16 @@ public class RotateArrow : MonoBehaviour
             Cursor.lockState = CursorLockMode.None;
             currentMousePos = Input.mousePosition;
             dirn = (currentMousePos - initMousePos).normalized;
-            arrowSprite.right =dirn ;
+            arrowSprite.transform.right =dirn ;
         }
         else if (Input.GetMouseButtonUp(0))
         {
-            EndPullAction?.Invoke();
+            EndPullAction?.Invoke(dirn);
+            spriteRenderer.enabled = false;
         }
-        
+
+        if (Cursor.visible) Cursor.visible = false;
+
 
     }
 
