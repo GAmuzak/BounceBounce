@@ -4,7 +4,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private DashDirection dashDirection;
     [SerializeField] private float bashForce;
     private Rigidbody2D rb;
-    private Transform playerLoc;
+    private Transform playerLocation;
 
     private void OnEnable()
     {
@@ -21,13 +21,13 @@ public class PlayerMovement : MonoBehaviour
     private void Start()
     {
         rb = gameObject.GetComponent<Rigidbody2D>();
-        playerLoc = gameObject.GetComponent<Transform>();
+        playerLocation = gameObject.GetComponent<Transform>();
     }
 
     private void Update()
     {
         if (!Input.GetMouseButtonDown(1)) return;
-        playerLoc.position = Vector2.zero;
+        playerLocation.position = Vector2.zero;
         rb.velocity = Vector2.zero;
     }
 
