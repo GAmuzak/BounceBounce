@@ -1,32 +1,31 @@
 using UnityEngine;
 using UnityEngine.Events;
 
-public class RotateArrow : MonoBehaviour
+public class DashDirection : MonoBehaviour
 {
-    [SerializeField] GameObject arrowSprite;
+    [SerializeField] private GameObject arrowSprite;
     
     public UnityAction StartPullAction;
     public UnityAction<Vector2> EndPullAction;
     
-    Vector2 dirn;
-    Vector2 initMousePos;
-    Vector2 currentMousePos;
-    bool arrowRender;
+    private Vector2 direction;
+    private readonly Vector2 initMousePos = new Vector2(Screen.width*0.5f,Screen.height*0.5f);
+    private Vector2 currentMousePos;
     public SpriteRenderer spriteRenderer;
 
-    void Start()
+    private void Start()
     {
         Cursor.visible = false;
         spriteRenderer=arrowSprite.GetComponent<SpriteRenderer>();
         spriteRenderer.enabled = false;
     }
 
-    void Update()
+    private void Update()
     {
         if (Input.GetMouseButtonDown(0))
         {
             Cursor.lockState = CursorLockMode.Locked;
-            initMousePos = new Vector2(Screen.width/2.0f,Screen.height/2.0f);
+            
             StartPullAction?.Invoke();
             spriteRenderer.enabled = true;
         }
@@ -35,12 +34,12 @@ public class RotateArrow : MonoBehaviour
         {
             Cursor.lockState = CursorLockMode.None;
             currentMousePos = Input.mousePosition;
-            dirn = (currentMousePos - initMousePos).normalized;
-            arrowSprite.transform.right =dirn ;
+            direction = (currentMousePos - initMousePos).normalized;
+            arrowSprite.transform.right =direction ;
         }
         else if (Input.GetMouseButtonUp(0))
         {
-            EndPullAction?.Invoke(dirn);
+            EndPullAction?.Invoke(direction);
             spriteRenderer.enabled = false;
         }
 

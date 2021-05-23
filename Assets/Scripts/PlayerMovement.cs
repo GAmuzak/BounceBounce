@@ -1,48 +1,44 @@
-using System;
 using UnityEngine;
-using Random = UnityEngine.Random;
-
 public class PlayerMovement : MonoBehaviour
 {
-    [SerializeField] RotateArrow r;
-    [SerializeField] float bashForce;
-    Rigidbody2D rb;
-    Transform playerLoc;
-    void OnEnable()
+    [SerializeField] private DashDirection dashDirection;
+    [SerializeField] private float bashForce;
+    private Rigidbody2D rb;
+    private Transform playerLoc;
+
+    private void OnEnable()
     {
-        r.StartPullAction += Test1;
-        r.EndPullAction += Test2;
+        dashDirection.StartPullAction += SlowPlayer;
+        dashDirection.EndPullAction += LaunchPlayer;
     }
 
-    void OnDisable()
+    private void OnDisable()
     {
-        r.StartPullAction -= Test1;
-        r.EndPullAction -= Test2;
+        dashDirection.StartPullAction -= SlowPlayer;
+        dashDirection.EndPullAction -= LaunchPlayer;
     }
 
-    void Start()
+    private void Start()
     {
         rb = gameObject.GetComponent<Rigidbody2D>();
         playerLoc = gameObject.GetComponent<Transform>();
     }
 
-    void Update()
+    private void Update()
     {
         if (!Input.GetMouseButtonDown(1)) return;
         playerLoc.position = Vector2.zero;
         rb.velocity = Vector2.zero;
     }
 
-    void Test1()
+    private void SlowPlayer()
     {
-        rb.velocity /= 10;
+        rb.velocity *= 0.1f;
     }
 
-    void Test2(Vector2 dirn)
+    private void LaunchPlayer(Vector2 direction)
     {
-        Vector2 randomVector = new Vector2(Random.Range(-1.0f,1.0f), Random.Range(-1.0f,1.0f));
-        randomVector.Normalize();
         rb.velocity = Vector2.zero;
-        rb.AddForce(dirn*bashForce,ForceMode2D.Impulse);
+        rb.AddForce(direction*bashForce,ForceMode2D.Impulse);
     }
 }

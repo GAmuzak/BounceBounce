@@ -128,6 +128,11 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 8491703436011901560, guid: c741d03d792fbba4586c17a7257afabb, type: 3}
   m_PrefabInstance: {fileID: 8491703435342869810}
   m_PrefabAsset: {fileID: 0}
+--- !u!212 &171545546 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 8491703436011901561, guid: c741d03d792fbba4586c17a7257afabb, type: 3}
+  m_PrefabInstance: {fileID: 8491703435342869810}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &280505793
 GameObject:
   m_ObjectHideFlags: 0
@@ -329,7 +334,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4dfd7c19c6e04bb47829b3f51af68448, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  r: {fileID: 8491703435342869811}
+  dashDirection: {fileID: 8491703435342869811}
   bashForce: 10
 --- !u!4 &2029483584
 Transform:
@@ -393,7 +398,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 8491703436011901561, guid: c741d03d792fbba4586c17a7257afabb, type: 3}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8491703436011901566, guid: c741d03d792fbba4586c17a7257afabb, type: 3}
       propertyPath: m_LocalScale.x
@@ -407,6 +412,10 @@ PrefabInstance:
       propertyPath: arrowSprite
       value: 
       objectReference: {fileID: 171545544}
+    - target: {fileID: 8491703436554075212, guid: c741d03d792fbba4586c17a7257afabb, type: 3}
+      propertyPath: spriteRenderer
+      value: 
+      objectReference: {fileID: 171545546}
     - target: {fileID: 8491703436554075214, guid: c741d03d792fbba4586c17a7257afabb, type: 3}
       propertyPath: m_Name
       value: Arrow
