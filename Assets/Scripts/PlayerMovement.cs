@@ -33,11 +33,13 @@ public class PlayerMovement : MonoBehaviour
 
     private void SlowPlayer()
     {
-        rb.velocity *= 0.1f;
+        Time.timeScale = 0.1f;
     }
+    
 
     private void LaunchPlayer(Vector2 direction)
     {
+        Time.timeScale = 1f;
         rb.velocity = Vector2.zero;
         rb.AddForce(direction*bashForce,ForceMode2D.Impulse);
     }
