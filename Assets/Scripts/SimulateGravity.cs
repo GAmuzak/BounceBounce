@@ -3,7 +3,7 @@ using UnityEngine;
 public class SimulateGravity : MonoBehaviour
 {
 
-    [SerializeField] private readonly float gravitationalConstant = 6.67f;
+    [SerializeField] private float gravitationalConstant = 6.67f;
     private Rigidbody2D rb;
 
     private void Start()
@@ -14,13 +14,14 @@ public class SimulateGravity : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D other)
     {
-        if (other.tag != "Player")
+        if (!other.CompareTag("Player"))
             return;
-        Rigidbody2D rbAttract = other.GetComponent<Rigidbody2D>();
-        Vector2 direction =  (rb.position - rbAttract.position);
+        Rigidbody2D playerRigidbody = other.GetComponent<Rigidbody2D>();
+        Vector2 direction =  (rb.position - playerRigidbody.position);
+        if (direction.Equals(Vector2.zero)) return;
         float distance = direction.magnitude;
-        float forceMagnitude = gravitationalConstant * (rbAttract.mass * rb.mass) / Mathf.Pow(distance, 2);
-        rbAttract.AddForce(direction.normalized * forceMagnitude );
+        float forceMagnitude = gravitationalConstant * (playerRigidbody.mass * rb.mass) / Mathf.Pow(distance, 2);
+        playerRigidbody.AddForce(direction.normalized * forceMagnitude);
 
     }
 

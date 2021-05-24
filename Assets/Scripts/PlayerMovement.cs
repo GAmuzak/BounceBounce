@@ -2,6 +2,8 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] private float bashForce;
+    [SerializeField] private float maxSpeed;
+    
     private Rigidbody2D rb;
     private Transform playerLocation;
 
@@ -25,9 +27,17 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
+        // Debug.Log(rb.velocity.magnitude);
+        if(rb.velocity.magnitude > maxSpeed)
+        {
+            rb.velocity = rb.velocity.normalized * maxSpeed;
+        }
+        
+        // this next bit can cause the game to glitch out, so make sure to replace it eventually with a screen reload via R or maybe right click
         if (!Input.GetMouseButtonDown(1)) return;
         playerLocation.position = Vector2.zero;
         rb.velocity = Vector2.zero;
+        
     }
 
     private void SlowPlayer()
