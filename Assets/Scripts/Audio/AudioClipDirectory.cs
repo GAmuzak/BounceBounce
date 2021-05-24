@@ -14,10 +14,10 @@ public class AudioClipDirectory : ScriptableObject
     {
         foreach (AudioClipDirectoryEntry entry in directory)
         {
-            if (tag.Equals(entry.tag))
-            {
-                return entry.audioClip;
-            }
+            if (!tag.Equals(entry.tag)) continue;
+            if (entry.audioClip == null) throw new FileNotFoundException();
+            
+            return entry.audioClip;
         }
 
         throw new FileNotFoundException();
