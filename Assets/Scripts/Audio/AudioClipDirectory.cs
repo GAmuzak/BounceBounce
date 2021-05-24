@@ -8,7 +8,7 @@ namespace Audio
 [CreateAssetMenu]
 public class AudioClipDirectory : ScriptableObject
 {
-    public List<AudioClipDirectoryEntry> directory;
+    private List<AudioClipDirectoryEntry> directory;
 
     public AudioClip FindClip(AudioTag tag)
     {
