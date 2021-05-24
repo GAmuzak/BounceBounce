@@ -1,21 +1,20 @@
 using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
-    [SerializeField] private DashDirection dashDirection;
     [SerializeField] private float bashForce;
     private Rigidbody2D rb;
     private Transform playerLocation;
 
     private void OnEnable()
     {
-        dashDirection.StartPullAction += SlowPlayer;
-        dashDirection.EndPullAction += LaunchPlayer;
+        DashDirection.StartPullAction += SlowPlayer;
+        DashDirection.EndPullAction += LaunchPlayer;
     }
 
     private void OnDisable()
     {
-        dashDirection.StartPullAction -= SlowPlayer;
-        dashDirection.EndPullAction -= LaunchPlayer;
+        DashDirection.StartPullAction -= SlowPlayer;
+        DashDirection.EndPullAction -= LaunchPlayer;
     }
 
     private void Start()

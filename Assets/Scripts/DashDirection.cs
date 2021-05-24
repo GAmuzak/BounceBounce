@@ -5,8 +5,8 @@ public class DashDirection : MonoBehaviour
 {
     [SerializeField] private GameObject arrowSprite;
     
-    public UnityAction StartPullAction;
-    public UnityAction<Vector2> EndPullAction;
+    public static UnityAction StartPullAction;
+    public static UnityAction<Vector2> EndPullAction;
     
     private Vector2 direction;
     private readonly Vector2 initMousePos = new Vector2(Screen.width*0.5f,Screen.height*0.5f);

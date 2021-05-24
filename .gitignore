@@ -568,3 +568,17 @@ FodyWeavers.xsd
 *.tlog
 
 # End of https://www.toptal.com/developers/gitignore/api/rider,visualstudio,visualstudiocode,macos,windows,unity
+
+# Ignore Vivek's custom library files
+Assets/Scripts/Extras.meta
+Assets/Scripts/Extras/DDOL.cs
+Assets/Scripts/Extras/DDOL.cs.meta
+Assets/Scripts/Extras/Editor.meta
+Assets/Scripts/Extras/Editor/EditorExtensions.cs
+Assets/Scripts/Extras/Editor/EditorExtensions.cs.meta
+Assets/Scripts/Extras/Extensions.cs
+Assets/Scripts/Extras/Extensions.cs.meta
+Assets/Scripts/Extras/SimpleCameraController.cs
+Assets/Scripts/Extras/SimpleCameraController.cs.meta
+Assets/Scripts/Extras/Singleton.cs
+Assets/Scripts/Extras/Singleton.cs.meta
