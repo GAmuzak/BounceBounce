@@ -7,7 +7,6 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float maxSpeed;
     
     private Rigidbody2D rb;
-    private Transform playerLocation;
 
     private void OnEnable()
     {
@@ -24,21 +23,17 @@ public class PlayerMovement : MonoBehaviour
     private void Start()
     {
         rb = gameObject.GetComponent<Rigidbody2D>();
-        playerLocation = gameObject.GetComponent<Transform>();
     }
 
     private void Update()
     {
-        // Debug.Log(rb.velocity.magnitude);
-        if(rb.velocity.magnitude > maxSpeed)
+        if(rb.velocity.sqrMagnitude > maxSpeed*maxSpeed)
         {
             rb.velocity = rb.velocity.normalized * maxSpeed;
         }
         
-        // this next bit can cause the game to glitch out, so make sure to replace it eventually with a screen reload via R or maybe right click
         if (!Input.GetMouseButtonDown(1)) return;
-        Scene scene = SceneManager.GetActiveScene();
-        SceneManager.LoadScene(scene.name);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         
     }
 

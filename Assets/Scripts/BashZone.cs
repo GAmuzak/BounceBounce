@@ -1,10 +1,8 @@
 using UnityEngine;
-using UnityEngine.Events;
-using UnityEngine.Serialization;
 
 public class BashZone : MonoBehaviour
 {
-    public UnityAction<bool> InBashZone;
+    public static bool CanBash;
 
     [SerializeField] private SpriteRenderer planetSprite;
     [SerializeField] private Sprite normalState;
@@ -14,13 +12,13 @@ public class BashZone : MonoBehaviour
         if (!other.CompareTag("Player"))
             return;
         planetSprite.sprite = bashReady;
-        InBashZone?.Invoke(true);
+        CanBash=true;
     }
     private void OnTriggerExit2D(Collider2D other)
     {
         if (!other.CompareTag("Player"))
             return;
         planetSprite.sprite = normalState;
-        InBashZone?.Invoke(false);
+        CanBash=false;
     }
 }
