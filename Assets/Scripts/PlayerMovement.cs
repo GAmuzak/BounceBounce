@@ -1,4 +1,6 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
+
 public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] private float bashForce;
@@ -35,8 +37,8 @@ public class PlayerMovement : MonoBehaviour
         
         // this next bit can cause the game to glitch out, so make sure to replace it eventually with a screen reload via R or maybe right click
         if (!Input.GetMouseButtonDown(1)) return;
-        playerLocation.position = Vector2.zero;
-        rb.velocity = Vector2.zero;
+        Scene scene = SceneManager.GetActiveScene();
+        SceneManager.LoadScene(scene.name);
         
     }
 

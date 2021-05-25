@@ -41,7 +41,6 @@ public class DashDirection : MonoBehaviour
             return;
         }
         Bash();
-        
 
 
     }

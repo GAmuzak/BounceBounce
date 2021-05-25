@@ -1,31 +1,22 @@
 fileFormatVersion: 2
-guid: 22b00bc656f65e94ab7ad8f796a617c7
+guid: 2639992a25a3720478ce9298e3499b4c
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 218137648614192405
-    second: wallbreak_0
+      213: -5480208858647201512
+    second: brokenship_0
   - first:
-      213: -1265930569017541835
-    second: wallbreak_1
+      213: 2708433154185035530
+    second: brokenship_1
   - first:
-      213: 1846865162598603209
-    second: wallbreak_2
+      213: 8254644509679579228
+    second: brokenship_2
   - first:
-      213: -7500111069137962683
-    second: wallbreak_3
+      213: 9111062985135344759
+    second: brokenship_3
   - first:
-      213: -3699999655933017664
-    second: wallbreak_4
-  - first:
-      213: -8372270192563358223
-    second: wallbreak_5
-  - first:
-      213: 3200811406319973366
-    second: wallbreak_6
-  - first:
-      213: -7490970064172718482
-    second: wallbreak_7
+      213: 8637042984765207746
+    second: brokenship_4
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -139,13 +130,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: wallbreak_0
+      name: brokenship_0
       rect:
         serializedVersion: 2
-        x: 496
-        y: 559
-        width: 62
-        height: 190
+        x: 656
+        y: 966
+        width: 241
+        height: 322
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -153,20 +144,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 515b9c1290bf60300800000000000000
-      internalID: 218137648614192405
+      spriteID: 8197265141362f3b0800000000000000
+      internalID: -5480208858647201512
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: wallbreak_1
+      name: brokenship_1
       rect:
         serializedVersion: 2
-        x: 662
-        y: 559
-        width: 73
-        height: 185
+        x: 459
+        y: 699
+        width: 117
+        height: 266
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -174,20 +165,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 53bb66bcad28e6ee0800000000000000
-      internalID: -1265930569017541835
+      spriteID: a0ff6159a99469520800000000000000
+      internalID: 2708433154185035530
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: wallbreak_2
+      name: brokenship_2
       rect:
         serializedVersion: 2
-        x: 126
-        y: 230
-        width: 80
-        height: 247
+        x: 743
+        y: 515
+        width: 299
+        height: 329
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -195,20 +186,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9c9dbbc841261a910800000000000000
-      internalID: 1846865162598603209
+      spriteID: c50749252736e8270800000000000000
+      internalID: 8254644509679579228
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: wallbreak_3
+      name: brokenship_3
       rect:
         serializedVersion: 2
-        x: 492
-        y: 370
-        width: 66
-        height: 145
+        x: 272
+        y: 81
+        width: 363
+        height: 476
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -216,20 +207,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5497e0c48b04ae790800000000000000
-      internalID: -7500111069137962683
+      spriteID: 77cc333338ff07e70800000000000000
+      internalID: 9111062985135344759
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: wallbreak_4
+      name: brokenship_4
       rect:
         serializedVersion: 2
-        x: 625
-        y: 420
-        width: 87
-        height: 125
+        x: 825
+        y: 65
+        width: 302
+        height: 303
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -237,50 +228,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0c18b079ae5f6acc0800000000000000
-      internalID: -3699999655933017664
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: wallbreak_5
-      rect:
-        serializedVersion: 2
-        x: 436
-        y: 40
-        width: 74
-        height: 201
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 1f57ba83e98bfcb80800000000000000
-      internalID: -8372270192563358223
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: wallbreak_6
-      rect:
-        serializedVersion: 2
-        x: 608
-        y: 181
-        width: 79
-        height: 144
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 6f378b2f3019b6c20800000000000000
-      internalID: 3200811406319973366
+      spriteID: 2c4b5b865d0fcd770800000000000000
+      internalID: 8637042984765207746
       vertices: []
       indices: 
       edges: []
