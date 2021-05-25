@@ -5,10 +5,9 @@ public class HandleBreaking : MonoBehaviour
 {
     [SerializeField] protected BreakObject breakObject;
 
-    protected void OnHit(GameObject brokenObject, SpriteRenderer mainObject, Collider2D otherCollider2D=null, Collision2D otherCollision2D=null)
+    protected void OnHit(GameObject brokenObject, SpriteRenderer mainObject)
     {
-        if (otherCollider2D is { } && !otherCollider2D.gameObject.CompareTag("Player")) return;
-        if (otherCollision2D != null && !otherCollision2D.gameObject.CompareTag("Player")) return;
+        
         brokenObject.SetActive(true);
         breakObject.OnObjectBreak();
         mainObject.enabled=false;

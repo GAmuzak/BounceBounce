@@ -15,11 +15,11 @@ public class ShipMovement : HandleBreaking
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        OnHit(brokenShip, mainShip, other);
-        if (other.gameObject.CompareTag("Player")) shipHit = true; //need to fix, not sure how
+        if (!other.gameObject.CompareTag("Player")) return;
+        OnHit(brokenShip, mainShip);
+        shipHit = true; 
     }
 
-    // Start is called before the first frame update
     void Start()
     {
         routeToGo = 0;
@@ -40,7 +40,6 @@ public class ShipMovement : HandleBreaking
 
     private IEnumerator FollowRoute(int routeNum)
     {
-        if(shipHit) yield break;
         coroutineAllowed = false;
 
         Vector2 p0 = routes[routeNum].GetChild(0).position;
@@ -50,6 +49,8 @@ public class ShipMovement : HandleBreaking
 
         while(tParam < 1)
         {
+            if(shipHit) yield break;
+
             tParam += Time.deltaTime * speedModifier;
 
             objectPosition = Mathf.Pow(1 - tParam, 3) * p0 + 3 * Mathf.Pow(1 - tParam, 2) * tParam * p1 + 3 * (1 - tParam) * Mathf.Pow(tParam, 2) * p2 + Mathf.Pow(tParam, 3) * p3;
