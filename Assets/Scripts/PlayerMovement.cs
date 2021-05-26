@@ -22,15 +22,12 @@ public class PlayerMovement : MonoBehaviour
 
     private void Start()
     {
-        rb = gameObject.GetComponent<Rigidbody2D>();
+        rb = GetComponent<Rigidbody2D>();
     }
 
     private void Update()
     {
-        if(rb.velocity.sqrMagnitude > maxSpeed*maxSpeed)
-        {
-            rb.velocity = rb.velocity.normalized * maxSpeed;
-        }
+        
         
         if (!Input.GetMouseButtonDown(1)) return;
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);

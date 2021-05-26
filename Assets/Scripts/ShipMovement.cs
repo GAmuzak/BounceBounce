@@ -8,9 +8,9 @@ public class ShipMovement : HandleBreaking
 
     private Vector2 objectPosition;
     private int routeToGo;
-    private float tParam;
+    private float timeParameterInBezierEquation;
     private float speedModifier;
-    private bool coroutineAllowed;
+    private bool shipMovementCoroutineAllowed;
     private bool shipHit;
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -23,16 +23,15 @@ public class ShipMovement : HandleBreaking
     void Start()
     {
         routeToGo = 0;
-        tParam = 0f;
+        timeParameterInBezierEquation = 0f;
         speedModifier = 0.5f;
         if (routes.Length < 1) return;
-        coroutineAllowed = true;
+        shipMovementCoroutineAllowed = true;
     }
 
-    // Update is called once per frame
     void Update()
     {
-        if (coroutineAllowed)
+        if (shipMovementCoroutineAllowed)
         {
             StartCoroutine(FollowRoute(routeToGo));
         }
@@ -40,32 +39,35 @@ public class ShipMovement : HandleBreaking
 
     private IEnumerator FollowRoute(int routeNum)
     {
-        coroutineAllowed = false;
-
+        shipMovementCoroutineAllowed = false;
+        
         Vector2 p0 = routes[routeNum].GetChild(0).position;
         Vector2 p1 = routes[routeNum].GetChild(1).position;
         Vector2 p2 = routes[routeNum].GetChild(2).position;
         Vector2 p3 = routes[routeNum].GetChild(3).position;
 
-        while(tParam < 1)
+        while(timeParameterInBezierEquation < 1)
         {
             if(shipHit) yield break;
 
-            tParam += Time.deltaTime * speedModifier;
+            timeParameterInBezierEquation += Time.deltaTime * speedModifier;
 
-            objectPosition = Mathf.Pow(1 - tParam, 3) * p0 + 3 * Mathf.Pow(1 - tParam, 2) * tParam * p1 + 3 * (1 - tParam) * Mathf.Pow(tParam, 2) * p2 + Mathf.Pow(tParam, 3) * p3;
+            objectPosition = Mathf.Pow(1 - timeParameterInBezierEquation, 3) * p0 +
+                             3 * Mathf.Pow(1 - timeParameterInBezierEquation, 2) * timeParameterInBezierEquation * p1 + 
+                             3 * (1 - timeParameterInBezierEquation) * Mathf.Pow(timeParameterInBezierEquation, 2) * p2 
+                             + Mathf.Pow(timeParameterInBezierEquation, 3) * p3;
 
             transform.position = objectPosition;
             yield return new WaitForEndOfFrame();
         }
 
-        tParam = 0f;
+        timeParameterInBezierEquation = 0f;
         routeToGo += 1;
         if(routeToGo > routes.Length - 1)
         {
             routeToGo = 0;
         }
-        coroutineAllowed = true;
+        shipMovementCoroutineAllowed = true;
 
     }
 }

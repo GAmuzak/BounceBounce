@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 public class SimulateGravity : MonoBehaviour
@@ -7,7 +6,8 @@ public class SimulateGravity : MonoBehaviour
     [SerializeField] private float gravitationalConstant = 6.67f;
     [SerializeField] private SpriteRenderer arrowSprite;
     [SerializeField] private Rigidbody2D playerRigidbody;
-    
+    [SerializeField] private float maxForce;
+
     private Rigidbody2D rb;
     private float gM1M2;
 
@@ -24,9 +24,10 @@ public class SimulateGravity : MonoBehaviour
             return;
         Vector2 direction =  (rb.position - playerRigidbody.position);
         if (direction.Equals(Vector2.zero)) return;
-        float distance = direction.sqrMagnitude;
-        float forceMagnitude = gM1M2 / distance;
-        playerRigidbody.AddForce(direction.normalized * forceMagnitude);
+        float sqrDistance = direction.sqrMagnitude;
+        float forceMagnitude = gM1M2 / sqrDistance;
+        float actualForceApplied = Mathf.Min(forceMagnitude, maxForce);
+        playerRigidbody.AddForce(direction.normalized * actualForceApplied);
 
     }
 
