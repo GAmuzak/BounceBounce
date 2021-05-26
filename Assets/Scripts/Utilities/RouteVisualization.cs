@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class RouteVisualisation : MonoBehaviour
+public class RouteVisualization : MonoBehaviour
 {
     [SerializeField] private Transform[] controlPoints;
 

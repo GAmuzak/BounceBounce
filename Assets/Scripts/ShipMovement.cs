@@ -5,7 +5,7 @@ public class ShipMovement : BreakHandlerMonoBehaviour
     [SerializeField] private GameObject brokenShip;
     [SerializeField] private SpriteRenderer mainShip;
     [SerializeField] private Transform[] routes;
-    [SerializeField] private RouteVisualisation routeVisualisation;
+    [SerializeField] private RouteVisualization routeVisualization;
 
     private Vector2 objectPosition=Vector2.zero;
     private int routeToGo=0;
@@ -54,14 +54,14 @@ public class ShipMovement : BreakHandlerMonoBehaviour
 
             timeParameterInBezierEquation += Time.deltaTime * speedModifier;
 
-            objectPosition = routeVisualisation.BezierPoint(timeParameterInBezierEquation,p);
+            objectPosition = routeVisualization.BezierPoint(timeParameterInBezierEquation,p);
 
             transform.position = objectPosition;
             yield return new WaitForEndOfFrame();
         }
 
         timeParameterInBezierEquation = 0f;
-        routeToGo = (routeToGo+ 1) % routes.Length;
+        routeToGo = (routeToGo + 1) % routes.Length;
         shipMovementCoroutineAllowed = true;
     }
 }
