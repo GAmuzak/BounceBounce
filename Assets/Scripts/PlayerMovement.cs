@@ -1,9 +1,11 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
+
 public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] private float bashForce;
+    
     private Rigidbody2D rb;
-    private Transform playerLocation;
 
     private void OnEnable()
     {
@@ -19,22 +21,19 @@ public class PlayerMovement : MonoBehaviour
 
     private void Start()
     {
-        rb = gameObject.GetComponent<Rigidbody2D>();
-        playerLocation = gameObject.GetComponent<Transform>();
+        rb = GetComponent<Rigidbody2D>();
     }
 
     private void Update()
     {
         if (!Input.GetMouseButtonDown(1)) return;
-        playerLocation.position = Vector2.zero;
-        rb.velocity = Vector2.zero;
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
     private void SlowPlayer()
     {
         Time.timeScale = 0.1f;
     }
-    
 
     private void LaunchPlayer(Vector2 direction)
     {
