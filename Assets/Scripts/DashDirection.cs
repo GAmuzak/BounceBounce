@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -8,11 +7,13 @@ public class DashDirection : MonoBehaviour
     public static UnityAction<Vector2> EndPullAction;
     
     [SerializeField] private GameObject arrowSprite;
+    [SerializeField] private BashZone bashZone;
 
     private readonly Vector2 centerOfScreen = new Vector2(Screen.width*0.5f,Screen.height*0.5f);
     private Vector2 direction;
     private Vector2 currentMousePos;
     public SpriteRenderer spriteRenderer;
+
     private void Start()
     {
         Cursor.visible = false;
@@ -22,8 +23,10 @@ public class DashDirection : MonoBehaviour
 
     private void Update()
     {
+        #if UNITY_EDITOR
         Cursor.visible = false;
-        if (BashZone.CanBash) Bash();
+        #endif
+        if (bashZone.CanBash) Bash();
     }
 
     private void Bash()
@@ -31,7 +34,6 @@ public class DashDirection : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
         {
             Cursor.lockState = CursorLockMode.Locked;
-            
             StartPullAction?.Invoke();
             spriteRenderer.enabled = true;
         }
@@ -49,9 +51,4 @@ public class DashDirection : MonoBehaviour
             spriteRenderer.enabled = false;
         }
     }
-    
-
-
-    
-
 }

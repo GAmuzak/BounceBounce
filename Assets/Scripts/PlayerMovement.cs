@@ -4,7 +4,6 @@ using UnityEngine.SceneManagement;
 public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] private float bashForce;
-    [SerializeField] private float maxSpeed;
     
     private Rigidbody2D rb;
 
@@ -27,18 +26,14 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
-        
-        
         if (!Input.GetMouseButtonDown(1)) return;
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-        
     }
 
     private void SlowPlayer()
     {
         Time.timeScale = 0.1f;
     }
-    
 
     private void LaunchPlayer(Vector2 direction)
     {

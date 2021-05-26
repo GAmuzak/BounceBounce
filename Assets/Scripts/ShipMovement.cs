@@ -1,17 +1,18 @@
 using System.Collections;
 using UnityEngine;
-public class ShipMovement : HandleBreaking
+public class ShipMovement : BreakHandlerMonoBehaviour
 {
     [SerializeField] private GameObject brokenShip;
     [SerializeField] private SpriteRenderer mainShip;
     [SerializeField] private Transform[] routes;
+    [SerializeField] private RouteVisualisation routeVisualisation;
 
-    private Vector2 objectPosition;
-    private int routeToGo;
-    private float timeParameterInBezierEquation;
-    private float speedModifier;
-    private bool shipMovementCoroutineAllowed;
-    private bool shipHit;
+    private Vector2 objectPosition=Vector2.zero;
+    private int routeToGo=0;
+    private float timeParameterInBezierEquation=0f;
+    private float speedModifier=0f;
+    private bool shipMovementCoroutineAllowed=false;
+    private bool shipHit=false;
 
     private void OnTriggerEnter2D(Collider2D other)
     {
@@ -20,7 +21,7 @@ public class ShipMovement : HandleBreaking
         shipHit = true; 
     }
 
-    void Start()
+    private void Start()
     {
         routeToGo = 0;
         timeParameterInBezierEquation = 0f;
@@ -29,7 +30,7 @@ public class ShipMovement : HandleBreaking
         shipMovementCoroutineAllowed = true;
     }
 
-    void Update()
+    private void Update()
     {
         if (shipMovementCoroutineAllowed)
         {
@@ -40,11 +41,12 @@ public class ShipMovement : HandleBreaking
     private IEnumerator FollowRoute(int routeNum)
     {
         shipMovementCoroutineAllowed = false;
-        
-        Vector2 p0 = routes[routeNum].GetChild(0).position;
-        Vector2 p1 = routes[routeNum].GetChild(1).position;
-        Vector2 p2 = routes[routeNum].GetChild(2).position;
-        Vector2 p3 = routes[routeNum].GetChild(3).position;
+
+        Vector2[] p = new Vector2[4];
+        for (int i = 0; i < 4; i++)
+        {
+            p[i]=routes[routeNum].GetChild(i).position;
+        }
 
         while(timeParameterInBezierEquation < 1)
         {
@@ -52,22 +54,14 @@ public class ShipMovement : HandleBreaking
 
             timeParameterInBezierEquation += Time.deltaTime * speedModifier;
 
-            objectPosition = Mathf.Pow(1 - timeParameterInBezierEquation, 3) * p0 +
-                             3 * Mathf.Pow(1 - timeParameterInBezierEquation, 2) * timeParameterInBezierEquation * p1 + 
-                             3 * (1 - timeParameterInBezierEquation) * Mathf.Pow(timeParameterInBezierEquation, 2) * p2 
-                             + Mathf.Pow(timeParameterInBezierEquation, 3) * p3;
+            objectPosition = routeVisualisation.BezierPoint(timeParameterInBezierEquation,p);
 
             transform.position = objectPosition;
             yield return new WaitForEndOfFrame();
         }
 
         timeParameterInBezierEquation = 0f;
-        routeToGo += 1;
-        if(routeToGo > routes.Length - 1)
-        {
-            routeToGo = 0;
-        }
+        routeToGo = (routeToGo+ 1) % routes.Length;
         shipMovementCoroutineAllowed = true;
-
     }
 }

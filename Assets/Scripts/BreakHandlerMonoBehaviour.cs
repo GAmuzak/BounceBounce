@@ -1,13 +1,12 @@
 using System.Collections;
 using UnityEngine;
 
-public class HandleBreaking : MonoBehaviour
+public abstract class BreakHandlerMonoBehaviour : MonoBehaviour
 {
     [SerializeField] protected BreakObject breakObject;
 
     protected void OnHit(GameObject brokenObject, SpriteRenderer mainObject)
     {
-        
         brokenObject.SetActive(true);
         breakObject.OnObjectBreak();
         mainObject.enabled=false;
