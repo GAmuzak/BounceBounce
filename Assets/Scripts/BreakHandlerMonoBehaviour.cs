@@ -4,7 +4,6 @@ using UnityEngine;
 public abstract class BreakHandlerMonoBehaviour : MonoBehaviour
 {
     [SerializeField] protected BreakObject breakObject;
-
     protected void OnHit(GameObject brokenObject, SpriteRenderer mainObject)
     {
         brokenObject.SetActive(true);
@@ -16,8 +15,6 @@ public abstract class BreakHandlerMonoBehaviour : MonoBehaviour
     private IEnumerator BreakObject()
     { 
         yield return new WaitForSeconds(1.5f);
-        //TODO add tweening code here later
-        yield return new WaitForSeconds(0.5f);
         Destroy(gameObject);
     }
 }

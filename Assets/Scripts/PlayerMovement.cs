@@ -1,9 +1,11 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] private float bashForce;
+    [SerializeField] private SimulateGravity simulateGravity;
     
     private Rigidbody2D rb;
 
@@ -40,5 +42,13 @@ public class PlayerMovement : MonoBehaviour
         Time.timeScale = 1f;
         rb.velocity = Vector2.zero;
         rb.AddForce(direction*bashForce,ForceMode2D.Impulse);
+        StartCoroutine(DisableGravity());
+    }
+
+    private IEnumerator DisableGravity()
+    {
+        simulateGravity.canAttract = false;
+        yield return new WaitForSeconds(0.5f);
+        simulateGravity.canAttract = true;
     }
 }

@@ -7,6 +7,8 @@ public class SimulateGravity : MonoBehaviour
     [SerializeField] private Rigidbody2D playerRigidbody;
     [SerializeField] private float maxForce=0f;
 
+    public bool canAttract = true;
+    
     private Rigidbody2D rb;
     private float gM1M2;
 
@@ -18,9 +20,9 @@ public class SimulateGravity : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D other)
     {
-        if (!other.CompareTag("Player")) return;
+        if (!(other.CompareTag("Player") && canAttract )) return;
         Vector2 direction =  (rb.position - playerRigidbody.position);
-        if (!(direction != (Vector2.zero))) return;
+        if (direction == Vector2.zero) return;
         float forceMagnitude = gM1M2 / direction.sqrMagnitude;
         playerRigidbody.AddForce(direction.normalized * Mathf.Min(forceMagnitude, maxForce));
     }
